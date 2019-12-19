@@ -36,7 +36,7 @@ You must have the following programs installed before running: Visual Studio 201
 * [SQL Server Management Studio 2019](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
 
 ## Installing
-1. Open up the 'MotoParts.sln' in Visual Studio and find the 'Web.config' file, here you want to modify the connectionString to contain your SQL Server Management Studio Server Name.
+1. Open up the 'MotoParts.sln' in Visual Studio and find the 'Web.config' file, here you want to modify the connectionString to contain your SQL Server Management Studio Server Name. (The Server Name can be found upon opening SSMS in the pop up window and also on the left side at the top of the object explorer.)
 ```c#
   <connectionStrings>
     <!-- 
@@ -46,15 +46,19 @@ You must have the following programs installed before running: Visual Studio 201
     <add name="dbConnection" connectionString="Server=LAPTOP-385\SQLEXPRESS;Database=MotoParts;Trusted_Connection=true;"/>
   </connectionStrings>
 ```
-   (The Server Name can be found upon opening SSMS in the pop up window and also on the left side at the top of the object explorer.)
+
+
 2. Copy the contents of 'script.sql' and paste them into an empty query in SQL Server Management studio. Once pasted in you will need to modify two file path strings at the top of the query.
 ```sql
 ( NAME = N'MotoParts', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS02\MSSQL\DATA\MotoParts.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
  LOG ON 
 ( NAME = N'MotoParts_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS02\MSSQL\DATA\MotoParts_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
 ```
+
 3. Highlight the whole query you just modified in SSMS and execute it.
+
 4. Open up Visual Studio and in the Solution Explorer right click on the 'MotoPartsWebApp' and in the pop up select Set as Start Up Project.
+
 5. Press the green play button to start the project.
 
 ## Built With
