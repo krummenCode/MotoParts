@@ -1,0 +1,207 @@
+﻿@using MotoPartsWebApp.Models
+@using MotoPartsCommon
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+@{
+    Layout = "~/Views/Shared/_LayoutLoggedInUser.cshtml";
+
+    ViewBag.Title = "Parts";
+
+    LoginModel u = (LoginModel)Session["loginModel"];
+
+}
+
+<div class="form-inline">
+    @Html.DropDownList("Make", (IEnumerable<SelectListItem>)ViewBag.makes, "Make", new { @class = "btn btn-default dropdown-toggle col-xs-4 col-sm-3" })
+    @Html.DropDownList("MakeYear", (IEnumerable<SelectListItem>)ViewBag.makeYear, "Year", new { @class = "btn btn-default dropdown-toggle col-xs-4 col-sm-3" })
+    @Html.DropDownList("Model", (IEnumerable<SelectListItem>)ViewBag.models, "Model", new { @class = "btn btn-default dropdown-toggle col-xs-4 col-sm-3" })
+    <button id="dirtbikeSubmit" onclick="submitDirtbike()" class="btn btn-default btn-primary col-xs-6 col-sm-1">Submit</button>
+    <button id="Reset" type="reset" class="btn btn-default btn-danger col-xs-6 col-sm-1">Reset</button>
+</div>
+
+
+<!--
+    ---------
+    Parts row
+    ---------
+ -->
+<div class="row">
+    @foreach (Part listParts in Model)
+    {
+        <div class="col-xs-10 col-xs-push-1 col-sm-push-0 col-sm-4 col-lg-3 card">
+            <div class="thumbnail">
+                <img src="@listParts.Picture" alt="@listParts.PartName">
+                <div class="caption">
+                    <h3>@listParts.BrandName</h3>
+                    <p>@listParts.PartName</p>
+                    <h2 id="price">$@listParts.Price</h2>
+                    @Html.ActionLink("View", "ViewPart", "Home", new { PartID = @listParts.PartID }, new { @class = "btn btn-primary" })
+                    <p class="hidden dirtbikeID">@listParts.DirtBikeIDFK</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts {
+    <script type="text/javascript" language="javascript">
+
+        var vMake = document.getElementById("Make");
+        var vMakeYear = document.getElementById("MakeYear");
+        var vModel = document.getElementById("Model");
+        var vSubmit = document.getElementById("dirtbikeSubmit");
+        var vReset = document.getElementById("Reset");
+        var cards = document.getElementsByClassName("card");
+        var vOption = document.getElementsByTagName("option");
+
+
+
+        // Disable submit btn and dropdowns, except for #Make dropdown
+        vMakeYear.classList.add("disabled");
+        vModel.classList.add("disabled");
+        vSubmit.classList.add("disabled");
+
+
+
+        // Create onclick attribute for reset btn
+        // Use ResetDropdowns() to set option index back to 0 (defualt)
+        // Use ableDisableDropdowns() to disable all dropdowns except for #Make
+        vReset.setAttribute("onclick", "ResetDropdowns(), ableDisableDropdowns()");
+
+
+
+        // Create attribute to call function(s) in each dropdown option change
+        // Use ableDisableDropdowns() to able next dropdown after method condition
+        // Use validOptionsForMake() to hide options that are not valid to make option select
+        vMake.setAttribute("onchange", "ableDisableDropdowns(), validOptionsForMake()");
+        vMakeYear.setAttribute("onchange", "ableDisableDropdowns()");
+        vModel.setAttribute("onchange", "ableDisableDropdowns()");
+
+
+
+        /* Able next dropdown after previous dropdown has been populated with anything but
+          default option. Then able submit after all dropdowns populated.
+          Condition is based on "" because default option has an empty value */
+        function ableDisableDropdowns() {
+            // #Model dropdown
+            var vModelValue = vModel.value;
+            if (vModelValue != "") {
+                vSubmit.classList.remove("disabled");
+            }
+            if (vModelValue == "") {
+                vMakeYear.classList.add("disabled");
+                vModel.classList.add("disabled");
+                vSubmit.classList.add("disabled");
+            }
+
+            // #MakeYear dropdown
+            var vMakeYearValue = vMakeYear.value;
+            if (vMakeYearValue != "") {
+                document.getElementById("Model").classList.remove("disabled");
+            }
+            if (vMakeYearValue == "") {
+                vModel.classList.add("disabled");
+                vSubmit.classList.add("disabled");
+            }
+
+            // #Make dropdown
+            var vMakeValue = vMake.value;
+            if (vMakeValue != "") {
+                vMakeYear.classList.remove("disabled");
+            }
+            if (vMakeValue == "") {
+                vMakeYear.classList.add("disabled");
+                vModel.classList.add("disabled");
+                vSubmit.classList.add("disabled");
+            }
+        }
+
+
+
+        /* Control dropdown options to ensure combination of Make, Year and Model
+           are for a valid bike id. Hide dropdown options that are not for selected #Make */
+        function validOptionsForMake() {
+            // Suzuki
+            if (vMake.value == "Suzuki") {
+                // Hide option indexes
+                vMakeYear[2].classList.add("hidden");
+                vModel[2].classList.add("hidden");
+                vMake[2].classList.add("hidden");
+                // Show option indexes
+                vMakeYear[1].classList.remove("hidden");
+                vModel[1].classList.remove("hidden");
+            }
+            // Kawasaki
+            if (vMake.value == "Kawasaki") {
+                // Hide option indexes
+                vMakeYear[1].classList.add("hidden");
+                vModel[1].classList.add("hidden");
+                vMake[1].classList.add("hidden");
+                // Show option indexes
+                vMakeYear[2].classList.remove("hidden");
+                vModel[2].classList.remove("hidden");
+            }
+        }
+
+
+
+        /* Reset dropdown options to defualt (index 0).
+           Remove class hidden from Make options incase user previously had input a different Make.
+           Remove class hidden from part cards incase user had submitted a different Make, Model, Year. */
+        function ResetDropdowns() {
+            vMake.selectedIndex = 0;
+            vMakeYear.selectedIndex = 0;
+            vModel.selectedIndex = 0;
+            // Used to increment index of cards
+            var cardIndex = 0;
+
+            // Make Drop down
+            if (vMake.value == "") {
+                // Show option indexes
+                vMake[1].classList.remove("hidden");
+                vMake[2].classList.remove("hidden");
+            }
+
+            for (var i = 0; i < cards.length; i++) {
+                if (cards[cardIndex].classList.contains("hidden")) {
+                    cards[cardIndex].classList.remove("hidden");
+                }
+                // Increment cards index each loop
+                cardIndex++;
+            }
+            // Reset cards index back to 0 to fix error on more than one reset
+            cardIndex = 0;
+        }
+
+
+
+        // If this make, year, model show these parts...
+        function submitDirtbike() {
+            // Used to increment index of #dirtbikeID
+            var idIndex = 0;
+
+            for (var card of cards) {
+                // Suzuki 2016 rmz250 parts have the bikeID of 1
+                // Hide any card where dirtbikeID is not 1
+                if (vMake.value == "Suzuki" && vMakeYear.value == "2016" && vModel.value == "rmz250") {
+                    if (document.getElementsByClassName("dirtbikeID")[idIndex].innerHTML != "1") {
+                        card.classList.add("hidden");
+                    }
+                }
+
+                // Kawasaki 2016 kx250 parts have the bikeID of 2
+                // Hide any card where dirtbikeID is not 2
+                if (vMake.value == "Kawasaki" && vMakeYear.value == "2016" && vModel.value == "kx250") {
+                    if (document.getElementsByClassName("dirtbikeID")[idIndex].innerHTML != "2") {
+                        card.classList.add("hidden");
+                    }
+                }
+                // Increment dirtbikeID index each loop
+                idIndex++;
+            }
+            // Reset dirtbikeID index back to 0 to fix error on more than one submit
+            idIndex = 0;
+        }
+    </script>
+}

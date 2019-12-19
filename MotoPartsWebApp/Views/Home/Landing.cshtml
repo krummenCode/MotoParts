@@ -1,0 +1,39 @@
+﻿@using MotoPartsWebApp.Models
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+@{
+    Layout = "~/Views/Shared/_LayoutLoggedInUser.cshtml";
+
+    ViewBag.Title = "Home";
+
+    LoginModel u = (LoginModel)Session["loginModel"];
+}
+
+
+<div class="jumbotron">
+    <h1>MotoParts</h1>
+    <p class="lead">Welcome back @u.FirstName!</p>
+    <p><a href="/home/ViewAllParts" class="btn btn-primary btn-lg">Shop &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Dirtbike</h2>
+        <p>
+            Use the Dirtbike selector to filter parts by Make, Year, and Model.
+        </p>
+        <p><a class="btn btn-default" href="/home/ViewAllParts">View Parts &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Cart</h2>
+        <p>Click the 'View' button on parts to get a short description and add them to your Cart!</p>
+        <p><a class="btn btn-default" href="@Url.Action("ViewCart", "Home", new {iUserID = u.UserID })">View Cart &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Sign Out</h2>
+        <p>Sign Out and Sign back in later!</p>
+        <p><a class="btn btn-default" href="/home/Signout">Sign Out &raquo;</a></p>
+    </div>
+</div>
+

@@ -1,0 +1,12 @@
+﻿@using MotoPartsWebApp.Models;
+@{
+    LoginModel u = (LoginModel)Session["loginModel"];
+
+    ViewBag.Title = "Admin Dashboard";
+
+}
+
+<div class="jumbotron">
+    <h1>Admin Dashboard</h1>
+    <p class="lead">Welcome back  @u.FirstName  @u.LastName.</p>
+</div>

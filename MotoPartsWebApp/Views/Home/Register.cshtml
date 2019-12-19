@@ -1,0 +1,40 @@
+﻿@model MotoPartsWebApp.Models.UserModel
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "Register";
+}
+
+@using (Html.BeginForm("Register", "Home", FormMethod.Post))
+{
+    <div class="text-center h-100">
+        <div class="form-signin">
+            <h2>Register</h2>
+            <div class="form-group">
+                <label for="firstname" class="sr-only">First Name</label>
+                @Html.TextBoxFor(m => m.FirstName, new { @placeholder = "First Name", @class = "form-control rm-btm-radius input-lg" })
+                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "error text-danger" })
+
+                <label for="lastname" class="sr-only">Last name</label>
+                @Html.TextBoxFor(m => m.LastName, new { @placeholder = "Last Name", @class = "form-control rm-radius input-lg" })
+                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "error text-danger" })
+
+                <label for="email" class="sr-only">Email</label>
+                @Html.TextBoxFor(m => m.Email, new { @placeholder = "Email", @class = "form-control rm-radius input-lg" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "error text-danger" })
+
+                <label for="username" class="sr-only">Username</label>
+                @Html.TextBoxFor(m => m.UserName, new { @placeholder = "User Name", @class = "form-control rm-radius input-lg" })
+                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "error text-danger" })
+
+                <label for="password" class="sr-only">Password</label>
+                @Html.TextBoxFor(m => m.UserPassword, new { @placeholder = "Password", @class = "form-control rm-top-radius input-lg", @type = "password" })
+                @Html.ValidationMessageFor(m => m.UserPassword, "", new { @class = "error text-danger" })
+                <p class="text-danger">@ViewBag.Message</p>
+            </div>
+            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit" />
+            <br>
+            <p>Already have an account? @Html.ActionLink("Sign In", "LogIn", "Home")</p>
+        </div>
+    </div>
+ }

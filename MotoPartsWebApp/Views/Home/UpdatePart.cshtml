@@ -1,0 +1,49 @@
+﻿@*@model MotoPartsWebApp.Models.PartModel*@
+<link href="~/Content/Site.css" rel="stylesheet" />
+@using MotoPartsCommon
+
+@{
+    ViewBag.Title = "Update Part";
+}
+
+
+@using (Html.BeginForm("UpdatePart", "Home", FormMethod.Post))
+{
+    <div class="text-center h-100">
+        <div class="form-signin">
+            <h2>Update Part</h2>
+            <div class="form-group">
+
+
+                <label for="PartId" class="sr-only">Part Id</label>
+                @Html.Hidden("PartId")
+
+                <label for="dirtbikeIDFK">Dirtbike ID</label><br>
+                @Html.TextBox("dirtbikeIDFK", new { @class = "form-control input-lg" })<br>
+
+                <label for="partName">Part Name</label><br>
+                @Html.TextBox("partName", new { @class = "form-control input-lg" })<br>
+
+                <label for="picture">Picture</label><br>
+                @Html.TextBox("picture", new { @class = "form-control input-lg" })<br>
+
+                <label for="price">Price</label><br>
+                @Html.TextBox("price", new { @class = "form-control input-lg" })<br>
+
+                <label for="partDescription">Part Description</label><br>
+                @Html.TextBox("partDescription", new { @class = "form-control input-lg" })<br>
+
+                <label for="brandIDFK">Brand ID</label><br>
+                @Html.TextBox("brandIDFK", new { @class = "form-control input-lg" })<br>
+
+                <label for="CategoryFK">Category ID</label><br>
+                @Html.TextBox("categoryIDFK", new { @class = "form-control input-lg" })<br>
+
+
+
+
+            </div>
+            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Update Part" />
+        </div>
+    </div>
+}

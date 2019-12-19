@@ -1,0 +1,25 @@
+﻿<link href="~/Content/Site.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "Delete Bike and Parts";
+}
+
+
+@using (Html.BeginForm("DeleteBikeAndParts", "Home", FormMethod.Post))
+{
+    <div class="text-center h-100">
+        <div class="form-signin">
+            <h2>Delete Dirt Bike and Parts</h2>
+            <div class="form-group">
+                <label for="iBikeID" class="sr-only">Dirt Bike ID</label>
+                @Html.TextBox("iBikeID","", new { @placeholder = "Dirt Bike ID", @class = "form-control rm-btm-radius input-lg" })
+            </div>
+            <input type="submit" class="btn btn-danger btn-lg btn-block" value="Delete"
+                    onclick = "return confirm('Do you really want to delete this Dirtbike and its parts?')" />
+        </div>
+    </div>
+}
+
+@*<span class="glyphicon glyphicon-trash"></span>
+@Html.ActionLink("Delete Bike and Parts", "DeleteBikeAndParts", "Home", new { partId = listParts.PartID },
+new { onclick = "return confirm('Do you really want to delete this Dirtbike and its parts?')" })*@

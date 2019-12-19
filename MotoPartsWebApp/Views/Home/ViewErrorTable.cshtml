@@ -1,0 +1,61 @@
+﻿@using MotoPartsCommon
+
+
+@{
+    ViewBag.Title = "Errors";
+}
+
+
+<div class="container table-responsive">
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>ErrorID</th>
+                <th>Error Date</th>
+                <th>Stack Trace</th>
+                <th>Error Message</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Error listErrors in Model)
+            {
+                <tr>
+                    <td>@listErrors.ErrorID</td>
+                    <td>@listErrors.ErrorDate</td>
+                    <td>@listErrors.StackTrace</td>
+                    <td>@listErrors.Message</td>
+                    <td>
+                        <span class="glyphicon glyphicon-trash"></span>
+                        @*@Html.ActionLink("Delete", "DeletePart", "Home", new { partId = listParts.PartID },
+                        new { onclick = "return confirm('Do you really want to delete the Part: " + listParts.BrandName + " " + listParts.PartName + "?')" })*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>ErrorID</th>
+                <th>Error Date</th>
+                <th>Stack Trace</th>
+                <th>Error Message</th>
+                <th>Operation</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+
+
+
+
+@section scripts {
+    <script type="text/javascript" language="javascript">
+
+        $(document).ready(function () {
+
+            $('#example').DataTable();
+
+        });
+    </script>
+}

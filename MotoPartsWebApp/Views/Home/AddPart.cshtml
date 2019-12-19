@@ -1,0 +1,41 @@
+﻿@model MotoPartsWebApp.Models.PartModel
+<link href="~/Content/Site.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Add Part";
+}
+
+@using (Html.BeginForm("AddPart", "Home", FormMethod.Post))
+{
+    <div class="text-center h-100">
+        <div class="form-signin">
+            <h2>Add Part</h2>
+            <div class="form-group">
+
+
+                <label for="dirtbikeIDFK" class="sr-only">Dirtbike ID</label>
+                @Html.TextBoxFor(p => p.DirtBikeIDFK, new { @placeholder = "Dirt Bike ID", @class = "form-control input-lg rm-btm-radius" })
+
+                <label for="partName" class="sr-only">Part Name</label>
+                @Html.TextBoxFor(p => p.PartName, new { @placeholder = "Part Name", @class = "form-control input-lg rm-btm-radius rm-top-radius" })
+
+                <label for="picture" class="sr-only">Picture</label>
+                @Html.TextBoxFor(p => p.Picture, new { @placeholder = "Picture URL", @class = "form-control input-lg rm-btm-radius rm-top-radius" })
+
+                <label for="price" class="sr-only">Price</label>
+                @Html.TextBoxFor(p => p.Price, new { @placeholder = "Price", @class = "form-control input-lg rm-btm-radius rm-top-radius" })
+
+                <label for="partDescription" class="sr-only">Part Description</label>
+                @Html.TextBoxFor(p => p.PartDescription, new { @placeholder = "Part Description", @class = "form-control input-lg rm-btm-radius rm-top-radius" })
+
+                <label for="brandIDFK" class="sr-only">Brand ID</label>
+                @Html.TextBoxFor(p => p.BrandIDFK, new { @placeholder = "Brand ID", @class = "form-control input-lg rm-btm-radius rm-top-radius" })
+
+                <label for="CategoryFK" class="sr-only">Category ID</label>
+                @Html.TextBoxFor(p => p.CategoryIDFK, new { @placeholder = "Category ID", @class = "form-control input-lg rm-top-radius" })
+
+
+            </div>
+            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Add Part" />
+        </div>
+    </div>
+}

@@ -1,0 +1,27 @@
+﻿@using MotoPartsWebApp.Models
+@using MotoPartsCommon
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+@{
+
+    ViewBag.Title = "Update Role";
+      
+}
+
+@using (Html.BeginForm("UpdateRole", "Home", FormMethod.Post))
+{
+    <div class="text-center h-100">
+        <div class="form-signin">
+            <h2>Update Role</h2>
+            <div class="form-group">
+                <label for="User ID" class="sr-only">User ID</label>
+                @Html.TextBox("FullName", ViewBag.FullName as string, new { @class = "form-control rm-btm-radius input-lg", @readonly = "readonly"})
+                @Html.Hidden("UserId", (int)ViewBag.ID)
+
+                @Html.DropDownList("RoleId", (IEnumerable<SelectListItem>)ViewBag.roles, "RoleName", new { @class = "btn btn-default btn-lg btn-block dropdown-toggle rm-top-radius" })
+            </div>
+            <input type="submit" class="btn btn-primary btn-lg btn-block" value="UpdateRole" />
+        </div>
+    </div>
+}

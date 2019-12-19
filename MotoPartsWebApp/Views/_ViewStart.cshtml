@@ -1,0 +1,38 @@
+﻿@using MotoPartsWebApp.Models;
+
+@{
+    LoginModel u = (LoginModel)Session["loginModel"];
+
+
+
+    if (u != null)
+    {
+        if (u.RoleIDFK == 1)
+        {
+            Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+        }
+
+        if (u.RoleIDFK == 3)
+        {
+            Layout = "~/Views/Shared/_LayoutLoggedInUser.cshtml";
+        }
+        if (u.RoleIDFK == 4)
+        {
+            Layout = "~/Views/Shared/_LayoutModerator.cshtml";
+        }
+
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+
+
+<!-- if statements with role comparisons 
+    if role user layout = user layout 
+    
+    else use defualt anon layout
+    
+    -->
+

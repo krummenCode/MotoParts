@@ -1,0 +1,68 @@
+﻿@using MotoPartsWebApp.Models
+@using MotoPartsCommon
+
+@{
+    ViewBag.Title = "Users";
+    LoginModel u = (LoginModel)Session["loginModel"];
+}
+
+<div class="container table-responsive">
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>UserID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>RoleID</th>
+                <th>Admin Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (User listUsers in Model)
+            {
+                <tr>
+                    <td>@listUsers.UserID</td>
+                    <td>@listUsers.FirstName</td>
+                    <td>@listUsers.LastName</td>
+                    <td>@listUsers.UserName</td>
+                    <td>@listUsers.Email</td>
+                    <td>@listUsers.RoleIDFK</td>
+                    <td>
+                        @{
+                            // Do not allow current admin to delete thier account or change role id
+                            if (listUsers.UserID != u.UserID)
+                            {
+                                @Html.ActionLink("Update Role", "UpdateRole", "Home", new { userID = listUsers.UserID, userFullName = @listUsers.FirstName + " " + @listUsers.LastName, roleID = listUsers.RoleIDFK }, null);<br> 
+                                @Html.ActionLink("Delete User", "DeleteUser", "Home", new { userID = listUsers.UserID }, new { onclick = "return confirm('Do you really want to delete the User: " + listUsers.FirstName + " " + listUsers.LastName + "?')" });
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>UserID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>RoleID</th>
+                <th>Admin Operation</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+@section scripts {
+    <script type="text/javascript" language="javascript">
+
+        $(document).ready(function () {
+
+            $('#example').DataTable();
+
+        });
+    </script>
+}

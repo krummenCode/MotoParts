@@ -1,0 +1,87 @@
+﻿@using MotoPartsCommon
+
+
+@{
+    ViewBag.Title = "Parts";
+}
+
+
+<div class="container table-responsive">
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>PartID</th>
+                <th>Part Name</th>
+                <th>Brand Name</th>
+                <th>Price</th>
+                <th>Dirt Bike</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><span class="glyphicon glyphicon-plus"></span> 
+                    @Html.ActionLink("Add New Part", "AddPart", "Home", null, null)
+                </td>
+            </tr>
+            @foreach (Part listParts in Model)
+            {
+                <tr>
+                    <td>@listParts.PartID</td>
+                    <td>@listParts.PartName</td>
+                    <td>@listParts.BrandName</td>
+                    <td>@listParts.Price</td>
+                    <td>@listParts.DirtBikeIDFK</td>
+                    <td>
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        @Html.ActionLink("Update Part", "UpdatePart", "Home", new
+                        {
+                       partId = listParts.PartID,
+                       dirtbikeIDFK = listParts.DirtBikeIDFK,
+                       partName = listParts.PartName,
+                       picture = listParts.Picture,
+                       price = listParts.Price,
+                       partDescription = listParts.PartDescription,
+                       brandIDFK = listParts.BrandIDFK,
+                       categoryIDFK = listParts.CategoryIDFK
+                        }, null) |
+
+                        <span class="glyphicon glyphicon-trash"></span>
+                        @Html.ActionLink("Delete", "DeletePart", "Home", new { partId = listParts.PartID },
+                        new { onclick = "return confirm('Do you really want to delete the Part: " + listParts.BrandName + " " + listParts.PartName + "?')" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>PartID</th>
+                <th>Part Name</th>
+                <th>Brand Name</th>
+                <th>Price</th>
+                <th>Dirt Bike</th>
+                <th>Operation</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+
+
+
+
+@section scripts {
+    <script type="text/javascript" language="javascript">
+
+        $(document).ready(function () {
+
+            $('#example').DataTable();
+
+        });
+    </script>
+}

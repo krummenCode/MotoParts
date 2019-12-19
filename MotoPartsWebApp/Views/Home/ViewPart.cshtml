@@ -1,0 +1,35 @@
+﻿@using MotoPartsWebApp.Models
+@using MotoPartsCommon
+
+@{
+    LoginModel u = (LoginModel)Session["loginModel"];
+}
+
+
+<div class="container">
+    @foreach (Part part in Model)
+    {
+        <div class="container col-xs-12 col-sm-12 col-md-5">
+          <img src="@part.Picture" alt="@part.PartName" style="max-width:100%">
+        </div>
+        <div class="container col-sm-12 col-md-7">
+            <h3>@part.BrandName</h3>
+            <p>@part.PartName</p>
+            <h2 id="price">$@part.Price</h2>
+            <p class="hidden dirtbikeID">@part.DirtBikeIDFK</p>
+            @Html.ActionLink("+ Add to Cart", "AddPartToCart", "Home",
+                new
+                {
+                    UserIDFK = u.UserID,
+                    PartIDFK = part.PartID,
+                    PartPrice = part.Price,
+                    PartName = part.PartName,
+                    PartBrand = part.BrandName,
+                    Picture = part.Picture
+                }, null)
+        </div>
+        <div class="col-sm-12">
+            <p>@part.PartDescription</p>
+        </div>
+    }
+</div>

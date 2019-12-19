@@ -1,0 +1,54 @@
+﻿<link href="~/Content/Site.css" rel="stylesheet" />
+@model MotoPartsWebApp.Models.CartModel
+@using MotoPartsCommon
+@using MotoPartsWebApp.Models
+
+@{
+    ViewBag.Title = "Cart";
+
+    LoginModel u = (LoginModel)Session["loginModel"];
+}
+
+
+<div class="container">
+    <h1>Shopping Cart</h1>
+    <hr>
+    <br>
+
+    @{
+        // Display message if there are no parts in the list
+        if (Model.PartList.Count == 0)
+        {
+            <h2>Your shopping cart is empty.</h2>
+        }
+    }
+
+    @* Display each part in list *@
+    @foreach (Part p in Model.PartList)
+    {
+        <div class="Cart-item well">
+            <img src="@p.Picture" alt="@p.PartName" class="thumbnail">
+            <div class="text">
+                <h2>@p.BrandName @p.PartName</h2>
+                <h3>$@p.Price</h3>
+                <p>Quantity: @p.PartQuantity</p>
+                @Html.ActionLink("Remove", "DeletePartFromCart", "Home", new { iUserID = u.UserID, iPartID = p.PartID }, null)
+            </div>
+        </div>
+    }
+    <hr>
+    <br> 
+
+    @{
+        // Display totals if there are parts in lisst
+        if (Model.PartList.Count != 0)
+        {
+            <div>
+                <h4><strong>Subtotal:</strong> $@Model.CartSubtotal</h4>
+                <h4><strong>Tax:</strong> $@Model.TaxTotal</h4>
+                <h4><strong>Total:</strong> $@Model.CartTotal</h4>
+            </div>
+            <br>
+        }
+    }
+</div>

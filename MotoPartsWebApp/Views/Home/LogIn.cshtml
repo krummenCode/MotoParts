@@ -1,0 +1,41 @@
+﻿@model MotoPartsWebApp.Models.LoginModel
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "Login";
+}
+
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    <div class="text-center h-100">
+        <div class="alert alert-danger hidden" id="message">
+            <strong id="strong">@ViewBag.Message</strong>
+        </div>
+        <div class="form-signin">
+            <h2>Sign In</h2>
+            <div class="form-group">
+                <label for="username" class="sr-only">Username</label>
+                @Html.TextBoxFor(m => m.UserName, new { @placeholder = "User Name", @class = "form-control rm-btm-radius input-lg" })
+                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "error text-danger" })
+
+                <label for="password" class="sr-only">Password</label>
+                @Html.TextBoxFor(m => m.UserPassword, new { @placeholder = "Password", @class = "form-control rm-top-radius input-lg", @type = "password" })
+                @Html.ValidationMessageFor(m => m.UserPassword, "", new { @class = "error text-danger" })
+            </div>
+            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Sign In" />
+            <br>
+            <p>Don't have an account? @Html.ActionLink("Register", "Register", "Home")</p>
+        </div>
+    </div>
+}
+
+@section scripts {
+
+    <script type="text/javascript" language="javascript">
+        if (document.getElementById("strong").innerHTML != "") {
+            document.getElementById("message").classList.remove("hidden");
+        }
+    </script>
+
+}

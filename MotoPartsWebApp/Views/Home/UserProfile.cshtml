@@ -1,0 +1,17 @@
+﻿@using MotoPartsWebApp.Models;
+@{
+    LoginModel u = (LoginModel)Session["loginModel"];
+    ViewBag.Title = "Account Info";
+}
+
+<h1>Account Info</h1>
+<p>First Name: @u.FirstName</p>
+<p>Last Name: @u.LastName</p>
+<p>Email: @u.Email</p>
+<p>Username: @u.UserName</p>
+@{
+    if (u.RoleIDFK != 1)
+    {
+        @Html.ActionLink("Delete Account", "DeleteUser", "Home", new { userId = u.UserID }, new { onclick = "return confirm('Do you really want to delete your Account?)" })
+    }
+}

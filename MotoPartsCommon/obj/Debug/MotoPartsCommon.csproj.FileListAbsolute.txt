@@ -1,0 +1,16 @@
+C:\Users\David.Krummen\Desktop\MotoParts\MotoPartsCommon\bin\Debug\MotoPartsCommon.dll
+C:\Users\David.Krummen\Desktop\MotoParts\MotoPartsCommon\bin\Debug\MotoPartsCommon.pdb
+C:\Users\David.Krummen\Desktop\MotoParts\MotoPartsCommon\obj\Debug\MotoPartsCommon.csproj.CoreCompileInputs.cache
+C:\Users\David.Krummen\Desktop\MotoParts\MotoPartsCommon\obj\Debug\MotoPartsCommon.dll
+C:\Users\David.Krummen\Desktop\MotoParts\MotoPartsCommon\obj\Debug\MotoPartsCommon.pdb
+C:\Users\David.Krummen\Desktop\MotoParts\MotoPartsCommon\obj\Debug\MotoPartsCommon.csprojAssemblyReference.cache
+C:\Users\david.krummen\Documents\Bootcamp\MotoParts_DavidKrummen_11.05.19\MotoParts\MotoPartsCommon\bin\Debug\MotoPartsCommon.dll
+C:\Users\david.krummen\Documents\Bootcamp\MotoParts_DavidKrummen_11.05.19\MotoParts\MotoPartsCommon\bin\Debug\MotoPartsCommon.pdb
+C:\Users\david.krummen\Documents\Bootcamp\MotoParts_DavidKrummen_11.05.19\MotoParts\MotoPartsCommon\obj\Debug\MotoPartsCommon.csprojAssemblyReference.cache
+C:\Users\david.krummen\Documents\Bootcamp\MotoParts_DavidKrummen_11.05.19\MotoParts\MotoPartsCommon\obj\Debug\MotoPartsCommon.dll
+C:\Users\david.krummen\Documents\Bootcamp\MotoParts_DavidKrummen_11.05.19\MotoParts\MotoPartsCommon\obj\Debug\MotoPartsCommon.pdb
+C:\Users\david.krummen\Documents\Projects\Bootcamp\MotoParts_DavidKrummen_11.05.19\MotoParts\MotoPartsCommon\bin\Debug\MotoPartsCommon.dll
+C:\Users\david.krummen\Documents\Projects\Bootcamp\MotoParts_DavidKrummen_11.05.19\MotoParts\MotoPartsCommon\bin\Debug\MotoPartsCommon.pdb
+C:\Users\david.krummen\Documents\Projects\Bootcamp\MotoParts_DavidKrummen_11.05.19\MotoParts\MotoPartsCommon\obj\Debug\MotoPartsCommon.csprojAssemblyReference.cache
+C:\Users\david.krummen\Documents\Projects\Bootcamp\MotoParts_DavidKrummen_11.05.19\MotoParts\MotoPartsCommon\obj\Debug\MotoPartsCommon.dll
+C:\Users\david.krummen\Documents\Projects\Bootcamp\MotoParts_DavidKrummen_11.05.19\MotoParts\MotoPartsCommon\obj\Debug\MotoPartsCommon.pdb
